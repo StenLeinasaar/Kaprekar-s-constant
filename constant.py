@@ -1,71 +1,64 @@
 import copy
 
+from numpy import append
+#Method to convert a integer list into one integer. 
 def convert(list): 
     # Converting integer list to string list
     s = [str(i) for i in list] 
     # Join list items using join()
+    #Cast it to int. 
     res = int("".join(s))
-    return(res)
+    return res
 
+
+#For user to call.
+#Abstracted away the count. 
 def kaprConst(number):
-    return kaprConstRun(number,0)
+    return kaprConstRun(number,1)
 
 
-
+#Main constant calculation method.
 def kaprConstRun(number, count):
     newList = [int(x) for x in str(number)]
     idx = len(newList)
     while idx <= 3:
         newList.insert(0, 0)
         idx += 1
-    
+    #Make copy of the newList, that is a list of integers.
     highestToLowest = copy.deepcopy(newList)
     lowestToHighest = copy.deepcopy(newList)
-    
-    #print("The number is", number)
-    #We know it is 4 digit number. 
-    #Greatest to lowest
+    #Sort the lists.
     highestToLowest.sort(reverse = True)
-    #lowest to greatest.
     lowestToHighest.sort(reverse = False)
+    #Convert the lists into integers using util method I wrote. 
     highest = convert(highestToLowest)
     lowest = convert(lowestToHighest)
 
-
-    #Todo, just highest from lowers
-    #nextValue = abs(num - highest - lowest)
-    #TODO maybe no abs value is needed.
-    #TODO this what I did is a nice idea to go see another pattern. 
-    
+    #Calculation
     nextValue = highest - lowest
-    
-
-    #print("THis is the next value being sent", nextValue)
-    # using list comprehension
-    # to convert number to list of integers
-    # res = [int(x) for x in str(nextValue)]
-    #print("Count is, " , count)
-    if count == 6:
+    #If count total is 7. Count begins from 1. 
+    if count == 7:
         return nextValue
 
     newCount = count + 1
+    #Recursion. 
     return kaprConstRun(nextValue, newCount)
-    
-    
-    
-    
-    
-    # print("arrays after.", highestToLowest, lowestToHighest)
 
+#Driver code
+if __name__ == "__main__":
 
+    satisfied = []
+    notSatisfied = []
+    for x in range(1000, 9999):
+        if x in [1111,2222,3333,4444,5555,6666,7777,8888,9999]:
+            continue
 
-for x in range(1000, 9999):
-    if x in [1111,2222,3333,4444,5555,6666,7777,8888,9999]:
-        continue
-    print(f"THe constant after 7 tries is {kaprConst(x)} for a number {x}" )
-    
+        if kaprConst(x) == 6174:
+            satisfied.append(x)
+        else: 
+            notSatisfied.append(x)
 
-print("When i Do it on 6174:", kaprConst(6174))
+    print("Satisfied for total of ", len(satisfied))
+    print("Not satisifed for total of ", len(notSatisfied))
 
-    
 

@@ -1,11 +1,3 @@
-# 6174  
-
-# any 4 digit number, not identical numbers. 
-# greates to least
-#Least to greatest
-#subtract. Absolute value of the subtraction
-# 7 steps and we are at 6174. 
-#number as a list. 
 import copy
 
 def convert(list): 
@@ -15,10 +7,12 @@ def convert(list):
     res = int("".join(s))
     return(res)
 
+def kaprConst(number):
+    return kaprConstRun(number,0)
 
-def kaprConst(number, count):
-    
 
+
+def kaprConstRun(number, count):
     newList = [int(x) for x in str(number)]
     idx = len(newList)
     while idx <= 3:
@@ -55,7 +49,7 @@ def kaprConst(number, count):
         return nextValue
 
     newCount = count + 1
-    return kaprConst(nextValue, newCount)
+    return kaprConstRun(nextValue, newCount)
     
     
     
@@ -68,10 +62,10 @@ def kaprConst(number, count):
 for x in range(1000, 9999):
     if x in [1111,2222,3333,4444,5555,6666,7777,8888,9999]:
         continue
-    print(f"THe constant after 7 tries is {kaprConst(x,0)} for a number {x}" )
+    print(f"THe constant after 7 tries is {kaprConst(x)} for a number {x}" )
     
 
-print("When i Do it on 6174:", kaprConst(6174,0))
+print("When i Do it on 6174:", kaprConst(6174))
 
     
 

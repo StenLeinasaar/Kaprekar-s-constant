@@ -5,10 +5,10 @@ Playing around with Kaprekar's constant. I found the idea and had to try it out 
 
 The idea of Kaprekar's constant is to take any 4 digit number and do one simple step at most 7 times. 
 The steps are: 
-    1) Organize the digits from highest to lowest --> Results in new 4 digit number
-    2) Organize the digits from lowest to highest --> Results in new 4 digit number
-    3) Subtract second from the first. Highest - lowest ==> new number
-    4) Repeat the steps for the new number. 
+1. Organize the digits from highest to lowest --> Results in new 4 digit number
+2. Organize the digits from lowest to highest --> Results in new 4 digit number
+3. Subtract second from the first. Highest - lowest ==> new number
+4. Repeat the steps for the new number. 
   Repeat all of that at most 7 times and you will end up with Kaprekar's constant of 6174 each time. 
   
   
